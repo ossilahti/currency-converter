@@ -1,37 +1,27 @@
 import tkinter as tk
-from currency_converter import CurrencyConverter
-
-c = CurrencyConverter()
+from forex_python.converter import CurrencyRates
 
 
-def to_dollars():
-    eur_to_dollars = c.convert(100, 'EUR', 'USD')
-    print(eur_to_dollars)
+def convert():
+    input_field = entry.get()
+    label1 = tk.Label(root, text=input_field)
+    label1.grid()
+    print(input_field)
 
 
-def to_pounds():
-    eur_to_pounds = c.convert(100, 'EUR', 'GBP')
-    print(eur_to_pounds)
-
-
+c = CurrencyRates()
 root = tk.Tk()
+root.title("Currency Converter")
 
-inputField = tk.Entry(root)
-inputField.grid(row=0, column=0, padx=10, pady=10)
-inputField.focus_set()
+entry = tk.Entry(root)
+entry.grid(row=0, column=0, padx=10, pady=10)
 
-buttons_frame = tk.Frame(root)
-buttons_frame.grid(row=1, column=0)
-
-to_usd_button = tk.Button(buttons_frame, text="Convert to USD",
-                          background="black",
-                          foreground="white", command=to_dollars())
+to_usd_button = tk.Button(root, text="Convert to USD", command=convert)
 to_usd_button.grid(row=1, column=0, padx=10, pady=10)
 
-to_gbp_button = tk.Button(buttons_frame, text="Convert to GBP",
-                          background="black",
-                          foreground="white", command=to_pounds())
+to_gbp_button = tk.Button(root, text="Convert to GBP", command=convert)
 to_gbp_button.grid(row=1, column=1, padx=10, pady=10)
+
 root.mainloop()
 
 
