@@ -11,8 +11,8 @@ def converter(from_curr, to_curr):
     label.grid(row=3, columnspan=3)
 
 
-# Is a callback function for the combobox event bind.
-def callback_func(event):
+# Is a callback function for the button 'Convert'.
+def callback():
     converter(from_currency.get(), to_currency.get())
 
 
@@ -48,7 +48,6 @@ from_curr_label.grid(row=1, column=0)
 
 # Shows EUROs as a default value
 from_currencies.current(0)
-from_currencies.bind("<<ComboboxSelected>>", callback_func)
 
 # Makes the combobox for to currencies
 to_currency = tk.StringVar()
@@ -62,9 +61,13 @@ to_curr_label.grid(row=2, column=0)
 
 # Shows DOLLARs as a default value
 to_currencies.current(1)
-to_currencies.bind("<<ComboboxSelected>>", callback_func)
 
-swap = tk.Button(root, text="Swap", command=swap)
+# Makes the 'Swap' -button
+swap = tk.Button(root, text="Swap", command=swap, width=7)
 swap.grid(row=1, column=2)
+
+# Makes the 'Convert' -button
+convert_button = tk.Button(root, text="Convert", command=callback, width=7)
+convert_button.grid(row=2, column=2)
 
 root.mainloop()
